@@ -1,0 +1,473 @@
+{% extends 'base.html' %} {% load humanize %}
+<!-- prettier-ignore -->
+{% block title%} | {{stay.title}} {%endblock%} 
+
+{% block content %} {% load static %}
+<section id="showcase-inner" class="py-5 text-white">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-12">
+        <h1 class="display-4">{{stay.title }}</h1>
+        <p class="lead">
+          <!-- prettier-ignore -->
+          <i class="fas fa-map-marker"></i> {{stay.title }} {{stay.state}} ,
+          {{stay.zipcode }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Breadcrumb -->
+<section id="bc" class="mt-3">
+  <div class="container">
+    <nav>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          <a href="{% url 'stays' %}">Homestays</a>
+        </li>
+        <li class="breadcrumb-item active">{{stay.title}}</li>
+      </ol>
+    </nav>
+  </div>
+</section>
+
+{% include 'partials/_alerts.html'%}
+<!-- Listing -->
+<section id="listing" class="py-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- Home Main Image -->
+        <img
+          src="{{stay.photoMain.url}}"
+          alt=""
+          height="250"
+          class="img-main img-fluid mb-3"
+        />
+        <div class="card-img-overlay">
+          <h2>
+            <span class="badge badge-secondary text-white">
+              <i class="fas fa-star"></i>
+              {{stay.avgReview}}</span
+            >
+          </h2>
+          <span class="badge badge-secondary text-white">
+            Review: {{stay.countReview}}</span
+          >
+        </div>
+        <!-- Thumbnails -->
+        <div class="row justify-content-center">
+          {% if stay.photo1 %}
+          <div class="col-md-2">
+            <a href="{{stay.photo1.url}}" data-lightbox="home-images">
+              <img src="{{stay.photo1.url}}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif%} {% if stay.photo2 %}
+          <div class="col-md-2">
+            <a href="{{stay.photo2.url}}" data-lightbox="home-images">
+              <img src="{{stay.photo2.url}}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif%} {% if stay.photo3 %}
+          <div class="col-md-2">
+            <a href="{{stay.photo3.url}}" data-lightbox="home-images">
+              <img src="{{stay.photo3.url}}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif%} {% if stay.photo4 %}
+          <div class="col-md-2">
+            <a href="{{stay.photo4.url}}" data-lightbox="home-images">
+              <img src="{{stay.photo4.url}}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif%} {% if stay.photo5 %}
+          <div class="col-2">
+            <a href="{{stay.photo5.url}}" data-lightbox="home-images">
+              <img src="{{stay.photo5.url}}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif%} {% if stay.photo6 %}
+          <div class="col-md-2">
+            <a href="{{stay.photo6.url}}" data-lightbox="home-images">
+              <img src="{{stay.photo6.url}}" alt="" class="img-fluid" />
+            </a>
+          </div>
+          {% endif%}
+        </div>
+        <!-- Fields -->
+        <h4 class="my-3">Features</h5>
+        <div class="row mb-5 fields">
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-secondary">
+                <i class="fas fa-rupee-sign"></i>PricePer Person:
+                <span class="float-right"
+                  >{{stay.pricePerPerson | intcomma}}</span
+                >
+              </li>
+              <li class="list-group-item text-secondary">
+                <i class="fas fa-bed"></i> Bedrooms:
+                <span class="float-right">{{stay.bedrooms}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-secondary">
+                <i class="fas fa-map-marker"></i> Location :
+                <span class="float-right"
+                  >{{stay.city}} {{stay.state}}, {{stay.zipcode}}</span
+                >
+              </li>
+              <li class="list-group-item text-secondary">
+                <i class="fas fa-bath"></i> Bathrooms:
+                <span class="float-right">{{stay.bathrooms}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <h4 class="my-3">Host Welcome</h5>
+        <div class="">
+          <div class="">
+            <ul class="d-flex">
+              <li class="list-group-item text-secondary">
+                {% if 'Families' in stay.hostWelcome%}
+                <i class="fa fa-check"></i>
+                {% else %}
+                <i class="fa fa-times" style="color: red"></i>
+                {% endif %} Families
+              </li>
+              <li class="list-group-item text-secondary">
+                {% if 'Couples' in stay.hostWelcome%}
+                <i class="fa fa-check"></i>
+                {% else %}
+                <i class="fa fa-times" style="color: red"></i>
+                {% endif %} Couples
+              </li>
+              <li class="list-group-item text-secondary">
+                {% if 'Students' in stay.hostWelcome%}
+                <i class="fa fa-check"></i>
+                {% else %}
+                <i class="fa fa-times" style="color: red"></i>
+                {% endif %} Students
+              </li>
+              <li class="list-group-item text-secondary">
+                {% if 'Males' in stay.hostWelcome%}
+                <i class="fa fa-check"></i>
+                {% else %}
+                <i class="fa fa-times" style="color: red"></i>
+                {% endif %} Males
+              </li>
+              <li class="list-group-item text-secondary">
+                {% if 'Females' in stay.hostWelcome%}
+                <i class="fa fa-check"></i>
+                {% else %}
+                <i class="fa fa-times" style="color: red"></i>
+                {% endif %} Females
+              </li>
+            </ul>
+          </div>
+        </div>
+
+          <h4 class="my-3">Amenities</h5>
+            <div class="">
+              <div class="">
+                <ul class="d-flex">
+                  <li class="list-group-item text-secondary">
+                    {% if 'Free parking' in stay.amenities%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-times" style="color: red"></i>
+                    {% endif %} Free parking
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    {% if 'Children Activities' in stay.amenities%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-times" style="color: red"></i>
+                    {% endif %} Children Activities
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    {% if 'Free Internet' in stay.amenities%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-times" style="color: red"></i>
+                    {% endif %} Free Internet
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    {% if 'Dry cleaning' in stay.amenities%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-times" style="color: red"></i>
+                    {% endif %} Dry cleaning
+                  </li>
+                  <li class="list-group-item text-secondary">
+                    {% if 'TV' in stay.amenities%}
+                    <i class="fa fa-check"></i>
+                    {% else %}
+                    <i class="fa fa-times" style="color: red"></i>
+                    {% endif %} TV
+                  </li>
+                </ul>
+              </div>
+            </div>   
+            
+            <h4>Meals</h5>
+              <div class="">
+                <div class="">
+                  <ul class="d-flex">
+                    <li class="list-group-item text-secondary">
+                      {% if 'Provided' in stay.meals%}
+                      <i class="fa fa-check"></i>
+                      {% else %}
+                      <i class="fa fa-times" style="color: red"></i>
+                      {% endif %} Provided
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      {% if 'Use Kitchen' in stay.meals%}
+                      <i class="fa fa-check"></i>
+                      {% else %}
+                      <i class="fa fa-times" style="color: red"></i>
+                      {% endif %} Use Kitchen
+                    </li>
+                  </ul>
+                </div>
+              </div>            
+
+        <!-- Description -->
+        <div class="my-5">
+          <h3>Description</h3>
+          <div class="col-md-12">{{stay.discription}}</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="mb-3">
+          <img class="rounded-circle mb-1" src="{{stay.owner.photo.url}}" />
+          <div class="card-body">
+            <h5 class="card-title text-center">Property Owner</h5>
+            <h6 class="text-secondary text-center">{{stay.owner.name}}</h6>
+          </div>
+        </div>
+        <button
+          class="btn-primary btn-block btn-lg"
+          data-toggle="modal"
+          data-target="#inquiryModal"
+        >
+          Make An Inquiry
+        </button>
+      </div>
+    </div>
+    <div class="my-5">
+      <h3>Review</h3>
+    </div>
+    {% for review in reviews %}
+    <div class="container border flex-row comment-row">
+      <div class="p-2"><span class="round"></span></div>
+      <div class="d-flex">
+        <div class="col-1">
+          <!-- prettier-ignore -->
+          <img
+          {% if review.rating == 5 %}
+            src="{% static 'img/5star.png' %}"
+          {% elif  review.rating == 4 %}
+            src="{% static 'img/4star.png' %}"
+          {% elif  review.rating == 3 %}
+            src="{% static 'img/3star.png' %}"
+          {% elif  review.rating == 2 %}
+            src="{% static 'img/2star.png' %}"                    
+          {% else %}
+          src="{% static 'img/1star.png' %}" 
+          {% endif %}
+            alt=""
+            class="rounded-circle"
+          />
+        </div>
+        <div class="comment-text w-100 px-2">
+          <div class="d-flex">
+            <h5>{{review.userName}}</h5>
+          </div>
+          <div class="comment-footer">
+            <span class="date">{{review.date}}</span>
+          </div>
+          <p class="px-2">{{review.comments}}</p>
+        </div>
+      </div>
+    </div>
+    
+    {% endfor %}
+    <button
+    class="btn-primary btn-block btn-lg my-2"
+    data-toggle="modal"
+    data-target="#ratingModal"
+  >
+    Write Review
+  </button>
+</section>
+
+<div class="modal fade" id="ratingModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ratingModalLabel">Write Review</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'review'%}" method="POST">
+          {% csrf_token %} {%if user.is_authenticated %}
+
+          <input type="hidden" name="userId" value="{{user.id}}" />
+
+          {%else%}
+
+          <input type="hidden" name="userId" value="0" />
+
+          {%endif%}
+
+          <input
+            type="hidden"
+            name="ownerEmail"
+            value="{{stay.owner.email}}"
+          />
+          <input type="hidden" name="stayId" value="{{stay.id}}" />
+
+          <div class="form-group">
+            <label for="property_name" class="col-form-label">Property:</label>
+            <input
+              type="text"
+              name="stayTitle"
+              class="form-control"
+              value="{{stay.title}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <!-- prettier-ignore -->
+            <input type="text" name="userName" class="form-control" {% if user.is_authenticated %} value="{{user.first_name}} {{user.last_name}}" {%endif%} required />
+          </div>
+          <div class="form-group">
+            <label for="name" class="col-form-label" >Rating:</label>
+            <!-- prettier-ignore -->
+            <select name="rating" class="form-control" required >
+              {% for key,value in rating_choices.items %}
+              <option value="{{key}}"
+              {% if key == values.rating %}
+              selected
+              {% endif %}
+              
+              >{{value}}</option>
+              {% endfor %}
+            </select>          </div>
+          
+          <div class="form-group">
+            <label for="comment" class="col-form-label">Review:</label>
+            <textarea name="comment" class="form-control" required="required"></textarea>
+          </div>
+          <hr />
+          <input
+            type="submit"
+            value="Submit"
+            class="btn btn-block btn-secondary"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="inquiryModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      {%if user.is_authenticated %}
+      <div class="modal-header">
+        <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'enquiry'%}" method="POST">
+          {% csrf_token %}
+          <input type="hidden" name="userId" value="{{user.id}}" />
+          <input type="hidden" name="stayId" value="{{stay.id}}" />
+          <div class="form-group">
+            <label for="property_name" class="col-form-label">Property:</label>
+            <input
+              type="text"
+              name="stayTitle"
+              class="form-control"
+              value="{{stay.title}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="property_name" class="col-form-label">From date:</label>
+            <input
+              name="bookingDate"
+              type="date"
+              class="form-control"
+              min="{{today}}"
+            />
+          </div>
+          <div class="form-group">
+            <label for="property_name" class="col-form-label">To date:</label>
+            <input
+              name="closingDate"
+              type="date"
+              class="form-control"
+              min="{{today}}"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name:</label>
+            <!-- prettier-ignore -->
+            <input type="text" name="userName" class="form-control" {% if user.is_authenticated %} value="{{user.first_name}} {{user.last_name}}" {%endif%} required />
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <!-- prettier-ignore -->
+            <input type="email" name="email" class="form-control"  {% if user.is_authenticated %} value="{{user.email}}" {%endif%}required  required />
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Phone:</label>
+            <input type="text" name="phone" class="form-control" />
+          </div>
+          <hr />
+          <input
+            type="submit"
+            value="Send"
+            class="btn btn-block btn-secondary"
+          /> 
+        </form>
+      </div>
+          {%else%}
+          <form>
+            <div class="p-2">
+              <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Please Login</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                  <span>&times;</span>
+                </button>
+              </div>
+              <a
+              href="{% url 'login' %}"
+              class="btn btn-primary btn-block"
+              >Login</a
+            >
+            </div>
+          </form>
+          {%endif%}
+
+    </div>
+  </div>
+</div>
+{% endblock %}
