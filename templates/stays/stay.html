@@ -62,25 +62,25 @@
         <!-- Thumbnails -->
         <div class="row justify-content-center">
           {% if stay.photo1 %}
-          <div class="col-md-2">
+          <div class="col-2">
             <a href="{{stay.photo1.url}}" data-lightbox="home-images">
               <img src="{{stay.photo1.url}}" alt="" class="img-fluid" />
             </a>
           </div>
           {% endif%} {% if stay.photo2 %}
-          <div class="col-md-2">
+          <div class="col-2">
             <a href="{{stay.photo2.url}}" data-lightbox="home-images">
               <img src="{{stay.photo2.url}}" alt="" class="img-fluid" />
             </a>
           </div>
           {% endif%} {% if stay.photo3 %}
-          <div class="col-md-2">
+          <div class="col-2">
             <a href="{{stay.photo3.url}}" data-lightbox="home-images">
               <img src="{{stay.photo3.url}}" alt="" class="img-fluid" />
             </a>
           </div>
           {% endif%} {% if stay.photo4 %}
-          <div class="col-md-2">
+          <div class="col-2">
             <a href="{{stay.photo4.url}}" data-lightbox="home-images">
               <img src="{{stay.photo4.url}}" alt="" class="img-fluid" />
             </a>
@@ -92,7 +92,7 @@
             </a>
           </div>
           {% endif%} {% if stay.photo6 %}
-          <div class="col-md-2">
+          <div class="col-2">
             <a href="{{stay.photo6.url}}" data-lightbox="home-images">
               <img src="{{stay.photo6.url}}" alt="" class="img-fluid" />
             </a>
@@ -135,36 +135,36 @@
         <h4 class="my-3">Host Welcome</h5>
         <div class="">
           <div class="">
-            <ul class="d-flex">
-              <li class="list-group-item text-secondary">
+            <ul class="d-flex flex-wrap">
+              <li class="list-group-item text-secondary m-1">
                 {% if 'Families' in stay.hostWelcome%}
                 <i class="fa fa-check"></i>
                 {% else %}
                 <i class="fa fa-times" style="color: red"></i>
                 {% endif %} Families
               </li>
-              <li class="list-group-item text-secondary">
+              <li class="list-group-item text-secondary m-1">
                 {% if 'Couples' in stay.hostWelcome%}
                 <i class="fa fa-check"></i>
                 {% else %}
                 <i class="fa fa-times" style="color: red"></i>
                 {% endif %} Couples
               </li>
-              <li class="list-group-item text-secondary">
+              <li class="list-group-item text-secondary m-1">
                 {% if 'Students' in stay.hostWelcome%}
                 <i class="fa fa-check"></i>
                 {% else %}
                 <i class="fa fa-times" style="color: red"></i>
                 {% endif %} Students
               </li>
-              <li class="list-group-item text-secondary">
+              <li class="list-group-item text-secondary m-1">
                 {% if 'Males' in stay.hostWelcome%}
                 <i class="fa fa-check"></i>
                 {% else %}
                 <i class="fa fa-times" style="color: red"></i>
                 {% endif %} Males
               </li>
-              <li class="list-group-item text-secondary">
+              <li class="list-group-item text-secondary m-1">
                 {% if 'Females' in stay.hostWelcome%}
                 <i class="fa fa-check"></i>
                 {% else %}
@@ -178,36 +178,36 @@
           <h4 class="my-3">Amenities</h5>
             <div class="">
               <div class="">
-                <ul class="d-flex">
-                  <li class="list-group-item text-secondary">
+                <ul class="d-flex d-flex flex-wrap">
+                  <li class="list-group-item text-secondary m-1">
                     {% if 'Free parking' in stay.amenities%}
                     <i class="fa fa-check"></i>
                     {% else %}
                     <i class="fa fa-times" style="color: red"></i>
                     {% endif %} Free parking
                   </li>
-                  <li class="list-group-item text-secondary">
+                  <li class="list-group-item text-secondary m-1">
                     {% if 'Children Activities' in stay.amenities%}
                     <i class="fa fa-check"></i>
                     {% else %}
                     <i class="fa fa-times" style="color: red"></i>
                     {% endif %} Children Activities
                   </li>
-                  <li class="list-group-item text-secondary">
+                  <li class="list-group-item text-secondary m-1">
                     {% if 'Free Internet' in stay.amenities%}
                     <i class="fa fa-check"></i>
                     {% else %}
                     <i class="fa fa-times" style="color: red"></i>
                     {% endif %} Free Internet
                   </li>
-                  <li class="list-group-item text-secondary">
+                  <li class="list-group-item text-secondary m-1">
                     {% if 'Dry cleaning' in stay.amenities%}
                     <i class="fa fa-check"></i>
                     {% else %}
                     <i class="fa fa-times" style="color: red"></i>
                     {% endif %} Dry cleaning
                   </li>
-                  <li class="list-group-item text-secondary">
+                  <li class="list-group-item text-secondary m-1">
                     {% if 'TV' in stay.amenities%}
                     <i class="fa fa-check"></i>
                     {% else %}
@@ -221,15 +221,15 @@
             <h4>Meals</h5>
               <div class="">
                 <div class="">
-                  <ul class="d-flex">
-                    <li class="list-group-item text-secondary">
+                  <ul class="d-flex flex-wrap">
+                    <li class="list-group-item text-secondary m-1">
                       {% if 'Provided' in stay.meals%}
                       <i class="fa fa-check"></i>
                       {% else %}
                       <i class="fa fa-times" style="color: red"></i>
                       {% endif %} Provided
                     </li>
-                    <li class="list-group-item text-secondary">
+                    <li class="list-group-item text-secondary m-1">
                       {% if 'Use Kitchen' in stay.meals%}
                       <i class="fa fa-check"></i>
                       {% else %}
